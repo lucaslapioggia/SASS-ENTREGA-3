@@ -1,0 +1,143 @@
+/* _variables.scss */
+$verde-principal: #6a994e;
+$verde-oscuro: #386641;
+$verde-claro: #a7c957;
+$blanco: #ffffff;
+$gris: #333;
+$fuente-principal: 'Arial', sans-serif;
+
+/* _mixins.scss */
+@mixin transition($property, $time) {
+  transition: $property $time ease-in-out;
+}
+
+@mixin responsive($breakpoint) {
+  @if $breakpoint == mobile {
+    @media (max-width: 768px) { @content; }
+  }
+  @else if $breakpoint == tablet {
+    @media (max-width: 1024px) { @content; }
+  }
+}
+
+/* _base.scss */
+@import 'variables';
+
+body {
+  font-family: $fuente-principal;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  color: $gris;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* _header.scss */
+@import 'variables';
+@import 'mixins';
+
+header {
+  background-color: $verde-principal;
+  color: $blanco;
+  text-align: center;
+  padding: 20px;
+  animation: fadeInDown 1s ease-in-out;
+}
+
+.navbar {
+  background-color: $verde-oscuro !important;
+  padding: 10px 20px;
+
+  .nav-link {
+    color: $blanco !important;
+    font-weight: bold;
+    @include transition(color, 0.3s);
+
+    &:hover {
+      color: $verde-claro !important;
+      transform: scale(1.1);
+    }
+  }
+}
+
+/* _main.scss */
+@import 'variables';
+
+main {
+  padding: 20px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.btn-custom {
+  background-color: $verde-principal;
+  color: $blanco;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  @include transition(all, 0.3s);
+
+  &:hover {
+    background-color: $verde-oscuro;
+    transform: scale(1.05);
+  }
+}
+
+.card {
+  background-color: $blanco;
+  border: 1px solid $verde-claro;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin-top: 15px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+/* _footer.scss */
+@import 'variables';
+
+footer {
+  background-color: $verde-principal;
+  color: $blanco;
+  text-align: center;
+  padding: 10px;
+  margin-top: 20px;
+  font-size: 0.9rem;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* style.scss */
+@import 'variables';
+@import 'mixins';
+@import 'base';
+@import 'header';
+@import 'main';
+@import 'footer';
